@@ -5,16 +5,18 @@ import pandas as pd
 from datetime import datetime, timedelta
 import json
 
+
 def get_db_connection():
-    """Get PostgreSQL database connection"""
-    return psycopg2.connect(
-        host="db.egvwumyqdznvscznkrgc.supabase.co",
-        database="postgres",
-        user="postgres",
-        password="supa.me@03",
-        port= 5432,
+    conn = psycopg2.connect(
+        host=st.secrets["postgres"]["host"],
+        database=st.secrets["postgres"]["database"],
+        user=st.secrets["postgres"]["user"],
+        password=st.secrets["postgres"]["password"],
+        port=st.secrets["postgres"]["port"],
         sslmode="require"
     )
+    return conn
+
 
 def init_db():
     """Initialize database with all required tables"""
